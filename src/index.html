@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_dataLayer.html") %>
+      <%= t.include("partials/_gtm.html") %>
+    <% } %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_gtmNoScript.html") %>
+    <% } %>
+    <responsive-child class="interactive">
+
+      <div class="graphic-hed">Coronavirus positive test rates as high as 35% in parts of King County</div>
+
+      <div class="graphic-chatter">Of the 55,000 King County residents tested for coronavirus from November 28-December 12, more than 9,800 (17.8%) were positive for the virus. In South Auburn, the positive-test rate hit 34.8%. The biggest increases since mid-November were in Bothell/Woodinville, Southeast Kent and Issaquah, all up nearly eight percentage points.</div>
+
+        <div style="text-align:center; margin-top: 15px;"><i>Click on a region below to see more details</i></div>
+      <!-- content goes here -->
+      <div class="buttonCon">
+        <!-- <div id="cases" class="button">Total cases</div> -->
+        <div id="tests_pos" class="button">Positivity rates Nov. 28 - Dec. 12</div>
+        <div id="pos_change" class="button">Percentage point change from previous two-week period</div>
+      </div>
+
+      <div id="legendCon">
+        <div class="decrease">
+          <div class="legend">
+            <div class="color"></div>
+            <div class="number">
+              <span class="pos_change">-5.0 to -2.6</span>
+              <span class="tests_pos">5-9.9%</span>
+            </div>
+          </div>
+
+
+        <div class="legend">
+          <div class="color"></div>
+          <div class="number">
+            <span class="pos_change">-2.5 to -0.1</span>
+            <span class="tests_pos">10-14.9%</span>
+          </div>
+        </div>
+        </div>
+
+        <div class="legend">
+          <div class="color"></div>
+          <div class="number">
+            <span class="pos_change">No change</span>
+            <span class="tests_pos">15-19.9%</span>
+          </div>
+        </div>
+
+
+
+      <div class="increase">
+        <div class="legend">
+          <div class="color"></div>
+          <div class="number">
+            <span class="pos_change">0.1 to 2.5</span>
+            <span class="tests_pos">20-24.9%</span>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="color"></div>
+          <div class="number">
+            <span class="pos_change">2.6 to 5.0</span>
+            <span class="tests_pos">25-29.9</span>
+          </div>
+        </div>
+
+
+        <div class="legend">
+          <div class="color"></div>
+          <div class="number">
+            <span class="pos_change">5.1 to 7.5</span>
+            <span class="tests_pos">30% +</span>
+          </div>
+        </div>
+
+        <div class="legend">
+          <div class="color lastBlock"></div>
+          <div class="number">
+            <span class="pos_change">7.6 +</span>
+            <!-- <span class="tests_pos">30% +</span> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+      <div id="map" class="aspect-ratio-outer">
+        <div class="aspect-ratio-inner">
+
+          <leaflet-map zoom=9>
+            <tile-layer layer="cartoPositron"></tile-layer>
+          </leaflet-map>
+
+        </div>
+      </div>
+
+      <figcaption class="source-container">
+          <p class="data-source">Source: Public Health - Seattle & King County. Data from Dec. 12, 2020.</p>
+          <p class="art-credit">Lauren Flannery / The Seattle Times</p>
+      </figcaption>
+
+
+    </responsive-child>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
